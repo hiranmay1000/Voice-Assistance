@@ -4,8 +4,12 @@ import pywhatkit
 import wikipedia as wiki
 import random
 import pyjokes as jokes
+import time
+
 from datetime import datetime as dt
 from time import sleep
+
+
 
 
 
@@ -30,7 +34,6 @@ def talk(text):
     engine.runAndWait()
 
 talk("Welcome boss")
-
 
 def print_response(cmd):
     print(assistanceName + ':', end = ' ')
@@ -74,10 +77,10 @@ def process_time():
 def process_date():
     formatted_date = dt.now().strftime("%d %B %Y")
     print_response(formatted_date)
-    talk(formatted_date)
+    talk( "Its" + formatted_date)
 
 def process_name_req():
-    mess = ["No doubt about it", "Definately I like my name" + assistanceName, "Yes I got a very cool name", "Yes I like it", "I like my name very much"]
+    mess = ["No doubt about it", "Definately I like my name " + assistanceName, "Yes I got a very cool name", "Yes I like it", "I like my name very much"]
 
     selected_mess = random.choice(mess)
     print_response(selected_mess)
@@ -106,35 +109,6 @@ def failed_cmd_inp():
     talk(selected_message)
 
 
-
-def take_cmd():
-    cmd = ""
-    try:
-        with sr.Microphone() as source:
-            print("\n\nListening...")
-            listener.adjust_for_ambient_noise(source)  # Adjust for ambient noise
-            voice = listener.listen(source, timeout=60)  # Set a timeout to avoid blocking indefinitely
-            cmd = listener.recognize_google(voice) 
-            cmd = cmd.lower()
-            if assistanceName in cmd: 
-                cmd = cmd.replace(assistanceName, "")          
-                print("You said:", cmd)
-            else:
-                print("Did you said to me?")
-                return "Did you said to me?"
-
-
-    except sr.UnknownValueError:
-        mess = "Google Speech Recognition could not understand audio and is up for command."
-        return mess
-    except sr.RequestError as e:
-        print(f"Could not request results from Google Speech Recognition service; {e}")
-
-    return cmd
-
-
-
-
 def run_alexa(cmd):
 
     if any(keyword in cmd for keyword in ['what time is it', 'what is the time', 'what is the time now', 'tell me the time', 'time now', 'the time']):
@@ -147,37 +121,79 @@ def run_alexa(cmd):
         get_boss_info()
     elif 'your name' in cmd:
         talk('My name is ' + assistanceName)
-    elif "Google Speech Recognition could not understand audio and is up for command." in cmd:
-        print(assistanceName + " is listening...")
     elif 'joke' in cmd:
         process_joke()
     elif 'play' in cmd:
         play_music(cmd)
     elif 'who' in cmd:
         search_wiki(cmd)
-    else:
+    elif cmd != "":
         talk("Sorry I don't have that information as of now")
 
 
+is_wake_up = True
+last_command_time = time.time()
 
-    
-    
-        
-        
+def take_cmd(sleep_timeout):
+    global is_wake_up, last_command_time
+    cmd = ""
+    try:
+        with sr.Microphone() as source:
+            print("\nListening...")
+            listener.adjust_for_ambient_noise(source)
+            voice = listener.listen(source, phrase_time_limit=15)
+            cmd = listener.recognize_google(voice)
+            cmd = cmd.lower()
+            print("------>>>>Cmd: " + cmd)
+
+            if is_wake_up:
+                print("You said:", cmd)
+                last_command_time = time.time()  # Update last command time
+                print(assistanceName + " is active :) ")
+
+            else:
+
+                if assistanceName in cmd:
+                    is_wake_up = True
+                else:
+                    cmd = ""
+                    print("Not for assistant")
+                    
+                print(assistanceName + ": Did you say something?")
+            
+            cmd = cmd.replace(assistanceName, "")
+
+    except sr.UnknownValueError:
+        print("Sorry, I couldn't understand what you said.")
+        is_wake_up = False
+    except sr.RequestError as e:
+        print(f"Error with the speech recognition service: {e}")
+    except sr.WaitTimeoutError:
+        print("Listening timed out. Please try again.")
+        is_wake_up = False
+
+    # Check if it's time to go to sleep
+    if not is_wake_up and time.time() - last_command_time > sleep_timeout:
+        print(assistanceName + " is in sleep mode - zzz zz zzz")
+        is_wake_up = False
+
+    return cmd
+
+
+
 
 while True:
-    command = take_cmd()
+    print("\n\n\nWhile loop------------")
+    command = take_cmd(5)  # Adjust the sleep timeout as needed
 
-    if 'shut down yourself' in command:
+    if any(keyword in command for keyword in ['shut down yourself', 'shutdown yourself', 'shut yourself', 'power off yourself']):
         talk("Shutting down")
-        print_response("Processing request...\nShutting down...")
+        print("Processing request...\nShutting down...")
         break
-    else:
+    elif is_wake_up:
         run_alexa(command)
 
-
 print("\n\nEnd of code...")
-
 
 
 
