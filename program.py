@@ -1,36 +1,24 @@
-import pyttsx3 as tt
-import speech_recognition as sr
-import pywhatkit
-import wikipedia as wiki
+import time
 import random
 import pyjokes as jokes
-import time
+import wikipedia as wiki
+import speech_recognition as sr
 
-from datetime import datetime as dt
 from time import sleep
+from datetime import datetime as dt
 
-
+# *custom module
+from modules.speech_module import talk
+from modules.play_media import play_music
 
 
 assistanceName = "servo"
 
+
+
 listener = sr.Recognizer()
-engine = tt.init()
 
-# Get all available voices
-voices = engine.getProperty('voices')
 
-# Select a female voice
-female_voice = [voice for voice in voices if 'female' in voice.name.lower()]
-
-if female_voice:
-    engine.setProperty('voice', female_voice[0].id)
-else:
-    print("No female voice found. Using the default voice.")
-
-def talk(text):
-    engine.say(text)
-    engine.runAndWait()
 
 talk("Welcome boss")
 
@@ -40,18 +28,6 @@ def print_response(cmd):
         print(''.join(char for char in word), end='', flush=True)
         sleep(0.025)
 
-
-def play_music(song):
-    words_to_remove = ["can", "play", "you"]
-    
-    for word in words_to_remove:
-        song = song.replace(word, "")
-
-    song = song.replace("play", "")
-    pywhatkit.playonyt(song)
-    talk("Playing" + song + "on youtube")
-    mess = 'Playing' + song
-    print_response(mess)
 
 def search_wiki(cmd):
     words_to_remove = ["who", "is", "the", "heck", "hell", "mr", "mrs", "ms"]
