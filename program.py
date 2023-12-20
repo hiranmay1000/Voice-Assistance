@@ -12,7 +12,6 @@ from time import sleep
 
 
 
-
 assistanceName = "servo"
 
 listener = sr.Recognizer()
@@ -197,6 +196,4 @@ print("\n\nEnd of code...")
 
 
 
-# export DISPLAY=:0
-# xhost +SI:localuser:your_username
 
