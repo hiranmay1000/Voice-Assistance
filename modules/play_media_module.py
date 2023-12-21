@@ -1,5 +1,7 @@
 import pywhatkit
 from modules.speech_module import talk
+from modules.print_response_module import print_response
+
 
 def play_music(song):
     words_to_remove = ["can", "play", "you"]

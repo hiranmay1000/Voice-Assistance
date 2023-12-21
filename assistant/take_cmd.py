@@ -2,7 +2,6 @@ import time
 import speech_recognition as sr
 
 from modules.speech_module import talk
-from assistant.run_voice_assistant import run_voice_assistant
 
 from settings.config import assistanceName
 from settings.config import is_wake_up

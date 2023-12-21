@@ -6,7 +6,7 @@
 
 ### Install Required Packages for Machine Language Model
 
-    pip install matplotlib numpy pylzma
+    pip install matplotlib numpy pylzma ipykernel jupyter torch
 
 ### Grant Display Connection
 
