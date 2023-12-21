@@ -1,4 +1,4 @@
-# Voice-Assistant Setup for Linux
+# Voice-Assistant Setup in Python
 
 ### Install Required Packages for Voice Assistant
 
