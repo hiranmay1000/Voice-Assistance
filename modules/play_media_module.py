@@ -1,4 +1,5 @@
 import pywhatkit
+from modules.speech_module import talk
 
 def play_music(song):
     words_to_remove = ["can", "play", "you"]
@@ -10,4 +11,4 @@ def play_music(song):
     pywhatkit.playonyt(song)
     talk("Playing" + song + "on youtube")
     mess = 'Playing' + song
-    print_response(mess)
+    print_response( mess)

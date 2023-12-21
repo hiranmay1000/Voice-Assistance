@@ -1,0 +1,31 @@
+from modules.assistant_owner_info_module import process_name_req
+from modules.assistant_owner_info_module import get_boss_info
+from modules.process_date_time_module import process_time
+from modules.process_date_time_module import process_date
+from modules.process_jokes_module import process_joke
+from modules.play_media_module import play_music
+from modules.wikipedia_module import search_wiki
+from modules.speech_module import talk
+from settings.config import assistanceName
+
+
+def process_commands(cmd):
+
+    if any(keyword in cmd for keyword in ['what time is it', 'what is the time', 'what is the time now', 'tell me the time', 'time now', 'the time']):
+        process_time()
+    elif any(keyword in cmd for keyword in [ 'what date is it', 'what date today', 'what is the date today', "today's date", 'tell me the date', 'date today', "the date"]):
+        process_date()
+    elif any(keyword in cmd for keyword in ['do you like your name', 'how much like your name', 'is your name cool']):
+        process_name_req()
+    elif any(keyword in cmd for keyword in ['who gave your name', 'who assign your name', 'who is your boss']):
+        get_boss_info()
+    elif 'your name' in cmd:
+        talk('My name is ' + assistanceName)
+    elif 'joke' in cmd:
+        process_joke()
+    elif 'play' in cmd:
+        play_music(cmd)
+    elif 'who' in cmd:
+        search_wiki(cmd)
+    elif cmd != "":
+        talk("Sorry I don't have that information as of now")
