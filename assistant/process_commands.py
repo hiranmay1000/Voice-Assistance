@@ -2,6 +2,8 @@ from modules.assistant_owner_info_module import process_name_req
 from modules.assistant_owner_info_module import get_boss_info
 from modules.process_date_time_module import process_time
 from modules.process_date_time_module import process_date
+from modules.bluetooth_functionality import turn_off_bluetooth
+from modules.bluetooth_functionality import turn_on_bluetooth
 from modules.process_jokes_module import process_joke
 from modules.play_media_module import play_music
 from modules.wikipedia_module import search_wiki
@@ -27,5 +29,9 @@ def process_commands(cmd):
         play_music(cmd)
     elif 'who' in cmd:
         search_wiki(cmd)
+    elif any(keyword in cmd for keyword in ['turn off bluetooth', 'bluetooth off', 'bluetooth turn off']):
+        turn_off_bluetooth()
+    elif any(keyword in cmd for keyword in ['turn on bluetooth', 'bluetooth on', 'bluetooth turn on']):
+        turn_on_bluetooth()
     elif cmd != "":
         talk("Sorry I don't have that information as of now")

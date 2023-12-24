@@ -10,7 +10,7 @@ def run_voice_assistant():
         print("\n\n\nWhile loop------------")
         command = take_cmd(5)  # Adjust the sleep timeout as needed
 
-        if any(keyword in command for keyword in ['shut down yourself', 'shutdown yourself', 'shut yourself', 'power off yourself']):
+        if any(keyword in command for keyword in ['shut down yourself', 'shutdown yourself', 'shut yourself', 'power off yourself', 'turn off yourself']):
             talk("Shutting down")
             print("Processing request...\nShutting down...")
             break
