@@ -1,4 +1,5 @@
 import pyttsx3 as tt
+from modules.print_response_module import print_response
 
 engine = tt.init()
 voices = engine.getProperty('voices')
@@ -11,4 +12,5 @@ else:
 
 def talk(text):
     engine.say(text)
+    print_response(text)
     engine.runAndWait()

@@ -2,7 +2,7 @@
 
 ### Install Required Packages for Voice Assistant
 
-    pip install pyttsx3 SpeechRecognition pywhatkit pyjokes pyaudio
+    pip install pyttsx3 SpeechRecognition pywhatkit pyjokes pyaudio pygame
 
 ### Install Required Packages for Machine Language Model
 
