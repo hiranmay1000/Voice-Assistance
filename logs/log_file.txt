@@ -1,0 +1,59 @@
+hiranmay1000: alexa what is the
+alexa: Here are some results
+
+alexa: That is an English language word used for several grammatical purposes. These include use as an adjective, conjunction, pronoun, adverb, and intensifier; it has distance from the speaker, as opposed to words like this. The word did not originally exist in Old English, and its concept was represented by þe. Once it came into being, it was spelt as þæt (among others, such as þet), taking the role of the modern that.
+
+hiranmay1000: alexa what is the time
+alexa: 01:01 AM
+
+hiranmay1000: what is the date today
+alexa: It's 25 December 2023
+
+hiranmay1000: tell me a joke
+alexa: I had a problem so I thought I'd use Java. Now I have a ProblemFactory.
+
+hiranmay1000: alexa what is your name
+alexa: My name is alexa
+
+hiranmay1000: do you like your name
+alexa: I like my name very much
+
+hiranmay1000: what is the date today
+alexa: It's 25 December 2023
+
+hiranmay1000: who is your boss
+alexa: My boss is Mr Hiranmay, and he assigned me this name
+
+hiranmay1000: do you like your name
+alexa: I like my name very much
+
+hiranmay1000: what is the name alexa
+alexa: Here are some results
+
+alexa: "What a Beautiful Name" is a song by Australian praise and worship group Hillsong Worship. Written by bandmates Brooke Ligertwood and Ben Fielding, the song refers to the promise of salvation through Jesus Christ as represented by His Holy Name. The "genre-smashing single" contributed to Hillsong being named Billboard's Top Christian Artist of 2017. "What a Beautiful Name" won two Dove Awards for Song of the Year and Worship Song of the Year in 2017.
+
+hiranmay1000: what is the time today
+alexa: 01:04 AM
+
+hiranmay1000: play me a song
+alexa: Playing  me a sg on youtube
+
+hiranmay1000: alexa tell me a joke
+alexa: What do you call a programmer from Finland? Nerdic.
+
+hiranmay1000: alexa one more joke
+alexa: Child: Dad, why does the sun rise in the east and set in the west? Dad: Son, it's working, don't touch it.
+
+hiranmay1000: alexa another joke
+alexa: I've been using Vim for a long time now, mainly because I can't figure out how to exit.
+
+
+hiranmay1000: what is the time now alexa
+alexa: 01:07 AM
+
+hiranmay1000: alexa shut
+alexa: Sorry I don't have that information as of now
+
+hiranmay1000: alexa shut down yourself
+alexa: Shutting down
+

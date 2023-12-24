@@ -15,5 +15,4 @@ def search_wiki(cmd):
         talk("Here are some results")
         print_response(output)
     except Exception as e:
-        talk(str(e))
-        print_response((str(e)))
+        talk("Sorry! there is no information available right now!")

@@ -5,6 +5,7 @@ from modules.process_date_time_module import process_date
 from modules.bluetooth_functionality import turn_off_bluetooth
 from modules.bluetooth_functionality import turn_on_bluetooth
 from modules.process_jokes_module import process_joke
+from modules.dictionary_module import process_dictionary
 from modules.play_media_module import play_music
 from modules.wikipedia_module import search_wiki
 from modules.speech_module import talk
@@ -27,7 +28,9 @@ def process_commands(cmd):
         process_joke()
     elif 'play' in cmd:
         play_music(cmd)
-    elif 'who' in cmd:
+    elif any(keyword in cmd for keyword in ['what is the meaning', 'meaning of', 'do you know the meaning', 'meaning', 'means']):
+        process_dictionary(cmd)
+    elif any(keyword in cmd for keyword in ['who', 'what is', 'you know', 'called']):
         search_wiki(cmd)
     elif any(keyword in cmd for keyword in ['turn off bluetooth', 'bluetooth off', 'bluetooth turn off']):
         turn_off_bluetooth()

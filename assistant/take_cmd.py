@@ -1,10 +1,14 @@
 import time
 import speech_recognition as sr
 import pygame
+from threading import Thread
+
 from modules.speech_module import talk
 from settings.config import assistanceName
 from settings.config import is_wake_up
 from utils.utils import get_assets_file_path
+from modules.print_response_module import print_user_command
+from modules.print_response_module import print_response
 
 last_command_time = time.time()
 listener = sr.Recognizer()
@@ -17,29 +21,35 @@ beep_sound_path = get_assets_file_path("../assets/computer-processing-sound.wav"
 beep_sound = pygame.mixer.Sound(beep_sound_path)
 
 def play_beep():
-    beep_sound.play()
+    Thread(target=beep_sound.play).start()
 
 def take_cmd(sleep_timeout):
     global is_wake_up, last_command_time
     cmd = ""
+    status = "\n\nListening..."
     try:
         with sr.Microphone() as source:
-            print("\nListening...")
-            listener.adjust_for_ambient_noise(source)
-            voice = listener.listen(source, phrase_time_limit=15)
+            print("\r" + status, end="", flush=True)  # Print the initial status
+            voice = listener.listen(source, phrase_time_limit=4)
+            if voice:
+                status = "_Processing..."
+                print("\r" + status)  # Print the updated status
+
             cmd = listener.recognize_google(voice)
             cmd = cmd.lower()
             print("------>>>>Cmd: " + cmd)
 
             if is_wake_up:
                 play_beep()  # Play the beep sound when the assistant is active
-                print("You said:", cmd)
+                print_user_command(cmd);
+                print("\rYou said:", cmd) if is_wake_up else print("\rNot for assistant")
                 last_command_time = time.time()  # Update last command time
                 print(assistanceName + " is active :) ")
 
             else:
                 if assistanceName in cmd:
                     play_beep()  # Play the beep sound when the assistant is active
+                    print_user_command(cmd);
                     is_wake_up = True
                 else:
                     cmd = ""

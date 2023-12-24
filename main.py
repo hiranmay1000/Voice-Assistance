@@ -14,8 +14,27 @@
 #     print("Light theme applied")
 
 
-import os
+# import os
 
-script_dir = os.path.dirname(os.path.abspath(__file__))
-# bluetooth_on_script = os.path.join(script_dir, "/scripts/bluetooth_on.sh") # rfkill unblock bluetooth
-print(script_dir + '/script/bluetooth_ff.sh')
+# script_dir = os.path.dirname(os.path.abspath(__file__))
+# # bluetooth_on_script = os.path.join(script_dir, "/scripts/bluetooth_on.sh") # rfkill unblock bluetooth
+# print(script_dir + '/script/bluetooth_ff.sh')
+
+
+from PyDictionary import PyDictionary
+
+# Create a PyDictionary object
+dictionary = PyDictionary()
+
+# Get the definition of a word
+word = "example part"
+definition = dictionary.meaning(word[0])
+print(f"Definition of {word}: {definition}")
+
+# Get synonyms of a word
+synonyms = dictionary.synonym(word)
+print(f"Synonyms of {word}: {synonyms}")
+
+# Get antonyms of a word
+antonyms = dictionary.antonym(word)
+print(f"Antonyms of {word}: {antonyms}")
